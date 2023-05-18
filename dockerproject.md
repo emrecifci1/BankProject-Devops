@@ -206,7 +206,7 @@ docker login
 - Build Docker image from Dockerfile locally, tag it as `<Your_Docker_Hub_Account_Name>/<Your_Image_Name>:<Tag>` and explain steps of building. Note that repo name is the combination of `<Your_Docker_Hub_Account_Name>/<Your_Image_Name>`.
 
 ```bash
-docker build -t "talfik2/devopsproject" -f ./Dockerfile .
+docker build -t "ugurbzkrt/devopsproject" -f ./Dockerfile .
 # The -f, --file, option lets you specify the path to an alternative file to use instead.
 docker image ls
 ```
@@ -229,7 +229,7 @@ docker volume inspect projectvolume
 - Bind the `projectvolume` to the container named `welcome` 
 
 ```bash
-docker run -it --name welcome -p 80:5000 -v projectvolume:/app talfik2/devopsproject
+docker run -it --name welcome -p 80:5000 -v projectvolume:/app ugurbzkrt/devopsproject
 # Check the 80 port
 read escape sequence
 ```
@@ -250,7 +250,7 @@ cd alternativemounting
 - Push newly built image to Docker Hub, and show the updated repo on Docker Hub.
 
 ```bash
-docker push talfik2/devopsproject
+docker push ugurbzkrt/devopsproject
 ```
 ### Networking
 
@@ -271,11 +271,11 @@ docker network ls
 docker network inspect projectnet
 ```
 
-- Run 2 alpine containers with interactive shell, in detached mode, name the containers as techpro1st, techpro2nd and add command to run alpine shell. Here, 1st and 2nd containers should be in techpronet.
+- Run 2 alpine containers with interactive shell, in detached mode, name the containers as proj1st, proj2nd and add command to run alpine shell. Here, 1st and 2nd containers should be in projectnet.
 
 ```bash
-docker run -d -it --network projectnet --name techpro1st alpine sh
-docker run -d -it --network projectnet --name techpro2nd alpine sh
+docker run -d -it --network projectnet --name proj1st alpine sh
+docker run -d -it --network projectnet --name projpro2nd alpine sh
 ```
 
 - Show the details of `projectnet`, and explore newly added containers.
@@ -289,22 +289,22 @@ docker network inspect projectnet
 docker network inspect bridge
 ```
 
-- Connect to the `techpro1st` container.
+- Connect to the `proj1st` container.
 
 ```bash
-docker attach techpro1st
+docker attach proj1st
 ```
 
-- Ping `techpro2nd `, `welcome` and `alcon` containers by its IP four times to show the connection.
+- Ping `proj2nd `, `welcome` and `alcon` containers by its IP four times to show the connection.
 
 ```bash
-ping -c 3 <techpro2ndIPv4>
+ping -c 3 <proj2ndIPv4>
 ping -c 3 <welcomeIPv4>
 ping -c 3 <alconIPv4> 
 # -c yi koymazsak sonsuza kadar calisir
 ```
 
-- Disconnect from `techpro1st` with `exit`
+- Disconnect from `proj1st` with `exit`
 ```bash
 exit
 ```
